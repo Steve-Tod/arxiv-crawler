@@ -1,0 +1,12 @@
+Yuke Zhu
+Xiaolong Wang
+Hao Su
+Andreas Geiger
+Jonathan T. Barron
+Pete Florence
+Jeannette Bohg
+Jiajun Wu
+Leonidas J. Guibas
+Kaichun Mo
+Vincent Sitzmann
+Matthias Niessner

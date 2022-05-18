@@ -10,3 +10,5 @@ env/
 data
 *.DS_Store
 twitter.txt
+daily_results/
+log.txt

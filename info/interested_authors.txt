@@ -22,3 +22,5 @@ Kristen Grauman
 Deepak Pathak
 Li Yi
 Christopher Choy
+Gordon Wetzstein
+Jitendra Malik

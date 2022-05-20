@@ -99,3 +99,28 @@ def strip_version(idstr):
 # "1511.08198v1" is an example of a valid arxiv id that we accept
 def isvalidid(pid):
   return re.match('^\d+\.\d+(v\d+)?$', pid)
+
+def write_to_txt_str(data, last = False):
+    write_str = ''
+    write_str += data['link'] + '\n' + '\n'
+    write_str += data['title'].replace('\n ', '') + '\n' + '\n'
+    
+    write_str += ', '.join([x['term'] for x in data['tags']]) + '\n' + '\n'
+    
+    write_str += ', '.join([x['name'] for x in data['authors']]) + '\n' + '\n'
+    write_str += data['summary'].replace('\n', ' ')+ '\n' + '\n'
+    if not last:
+        write_str += '-' * 88 + '\n' + '\n'
+    return write_str
+
+def write_to_md_str(data):
+    write_str = ''
+    title_str = data['title'].replace('\n ', '')
+    link_str = data['link']
+    write_str += f'## [{title_str}]({link_str})\n\n'
+    
+    write_str += ', '.join([x['term'] for x in data['tags']]) + '\n' + '\n'
+    
+    write_str += ', '.join([x['name'] for x in data['authors']]) + '\n' + '\n'
+    write_str += data['summary'].replace('\n', ' ')+ '\n' + '\n'
+    return write_str

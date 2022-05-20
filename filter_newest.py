@@ -1,6 +1,9 @@
 import os
 import json
 import pickle
+import markdown
+
+from utils import write_to_md_str
 
 # load database
 with open('./db.p', 'rb') as f:
@@ -101,16 +104,8 @@ with open(f'./daily_results/{newest_time}.json', 'w') as f:
 write_str = ''
 for idx, k in enumerate(filter_results):
     data = db[k]
-    write_str += data['link'] + '\n' + '\n'
-    write_str += data['title'].replace('\n ', '') + '\n' + '\n'
-    
-    write_str += ', '.join([x['term'] for x in data['tags']]) + '\n' + '\n'
-    
-    write_str += ', '.join([x['name'] for x in data['authors']]) + '\n' + '\n'
-    write_str += data['summary'].replace('\n', ' ')+ '\n' + '\n'
-    if idx < len(filter_results) - 1:
-        write_str += '-' * 88 + '\n' + '\n'
-with open(f'./daily_results/{newest_time}.txt', 'w') as f:
-    f.write(write_str)
+    write_str += write_to_md_str(data)
+with open(f'./daily_results/{newest_time}.html', 'w') as f:
+    f.write(markdown.markdown(write_str))
 
-os.system('cp ' + f'./daily_results/{newest_time}.txt' + ' ~/Desktop/arxiv-newest.txt')
+os.system('cp ' + f'./daily_results/{newest_time}.html' + ' ~/Desktop/arxiv-newest.html')

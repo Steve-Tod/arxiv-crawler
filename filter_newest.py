@@ -1,5 +1,4 @@
 import os
-import time
 import json
 import pickle
 
@@ -8,11 +7,14 @@ with open('./db.p', 'rb') as f:
     db = pickle.load(f)
     
 # global variables
-with open('./interested_authors.txt') as f:
+with open('./info/interested_authors.txt') as f:
     interested_authors = f.read().splitlines()
     
-with open('./keywords.txt') as f:
-    keywords = f.read().splitlines()
+with open('./info/title_keywords.txt') as f:
+    title_keywords = f.read().splitlines()
+
+with open('./info/abstract_keywords.txt') as f:
+    abstract_keywords = f.read().splitlines()
 
 keys = sorted(list(db.keys()))
 newest_time = db[keys[-1]]['updated'].split('T')[0]
@@ -23,27 +25,46 @@ def in_interested_authors(data):
     for author in data['authors']:
         if author['name'] in interested_authors:
             flag = True
-            break
     return flag
 
-def in_keywords(data):
+def in_title_keywords(data):
     flag = False
     title = data['title'].lower()
-    abstract = data['summary'].lower()
-    for kw in keywords:
+    for kw in title_keywords:
         if '+' in kw:
             to_contain = [x.lower() for x in kw.split('+')]
         else:
             to_contain = [kw.lower()]
         sub_flag = True
         for word in to_contain:
-            if word not in title + abstract:
+            if word not in title:
                 sub_flag = False
                 break
         if sub_flag:
             flag = True
             break
     return flag
+
+def in_abstract_keywords(data):
+    flag = False
+    abstract = data['summary'].lower()
+    for kw in abstract_keywords:
+        if '+' in kw:
+            to_contain = [x.lower() for x in kw.split('+')]
+        else:
+            to_contain = [kw.lower()]
+        sub_flag = True
+        for word in to_contain:
+            if word not in abstract:
+                sub_flag = False
+                break
+        if sub_flag:
+            flag = True
+            break
+    return flag
+
+def is_newest(data):
+    return data['published'].startswith(newest_time)
 
 def filter_data(data, rules_or, rules_and):
     for name, rule in rules_and.items():
@@ -57,12 +78,10 @@ def filter_data(data, rules_or, rules_and):
             break
     return flag
 
-def is_newest(data):
-    return data['published'].startswith(newest_time)
-
 # composite rules
 rules_or = {'Interested authors': in_interested_authors,
-         'Keywords': in_keywords}
+         'Title keywords': in_title_keywords,
+         'Abstract keywords': in_abstract_keywords}
 rules_and = {'Today': is_newest}
 
 # filter data
@@ -75,6 +94,7 @@ print(f'Filtered {len(filter_results)} papers on {newest_time}')
 
 # write results
 filter_dict = {data: db[data] for data in filter_results}
+os.makedirs('daily_results', exist_ok=True)
 with open(f'./daily_results/{newest_time}.json', 'w') as f:
     json.dump(filter_dict, f, indent=2)
     
@@ -93,4 +113,4 @@ for idx, k in enumerate(filter_results):
 with open(f'./daily_results/{newest_time}.txt', 'w') as f:
     f.write(write_str)
 
-os.system('cp ' + f'./daily_results/{newest_time}.txt' + ' /home/zhenyu/Desktop/arxiv-newest.txt')
+os.system('cp ' + f'./daily_results/{newest_time}.txt' + ' ~/Desktop/arxiv-newest.txt')

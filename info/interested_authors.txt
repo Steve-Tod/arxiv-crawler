@@ -10,3 +10,7 @@ Leonidas J. Guibas
 Kaichun Mo
 Vincent Sitzmann
 Matthias Niessner
+Dieter Fox
+Fei Xia
+Shuran Song
+Andy Zeng

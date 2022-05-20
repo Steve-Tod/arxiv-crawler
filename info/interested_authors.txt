@@ -15,3 +15,10 @@ Fei Xia
 Shuran Song
 Andy Zeng
 Dieter Fox
+Kaiming He
+Or Litany
+Sanja Fidler
+Kristen Grauman
+Deepak Pathak
+Li Yi
+Christopher Choy

@@ -24,3 +24,5 @@ Li Yi
 Christopher Choy
 Gordon Wetzstein
 Jitendra Malik
+Kostas Daniilidis
+Michael Niemeyer

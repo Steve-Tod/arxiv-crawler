@@ -9,3 +9,6 @@ Interactive+perception
 Occupancy
 3D+shape
 Robotic Manipulation
+Egocentric
+Language+guided
+Language+driven

@@ -26,3 +26,5 @@ Gordon Wetzstein
 Jitendra Malik
 Kostas Daniilidis
 Michael Niemeyer
+Xiaowei Zhou
+Thomas Kipf

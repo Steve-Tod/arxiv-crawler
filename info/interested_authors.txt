@@ -28,3 +28,10 @@ Kostas Daniilidis
 Michael Niemeyer
 Xiaowei Zhou
 Thomas Kipf
+Andrea Vedaldi
+Matthew Tancik
+Angjoo Kanazawa
+Ken Goldberg
+David Held
+Jan Kautz
+Luca Carlone

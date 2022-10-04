@@ -26,8 +26,10 @@ newest_time = db[keys[-1]]['updated'].split('T')[0]
 def in_interested_authors(data):
     flag = False
     for author in data['authors']:
-        if author['name'] in interested_authors:
-            flag = True
+        for author_i in interested_authors:
+            if author_i in author['name'] or author['name'] in author_i:
+                flag = True
+                break
     return flag
 
 def in_title_keywords(data):

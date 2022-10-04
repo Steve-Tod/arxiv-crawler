@@ -1,14 +1,15 @@
-NeRF
-3D Reconstruction
-Articulated
-Active perception
-Neural field
-Implicit+shape
-Implicit+3D
-Interactive+perception
 Occupancy
-3D+shape
-Robotic Manipulation
-Egocentric
-Language+guided
+Implicit+3D
 Language+driven
+Robotic Manipulation
+Language+guided
+Implicit+shape
+Interactive+perception
+Articulated
+Neural field
+3D+shape
+3D Reconstruction
+NeRF
+Affordance
+Active perception
+Egocentric

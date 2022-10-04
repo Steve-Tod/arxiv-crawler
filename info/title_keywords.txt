@@ -11,3 +11,5 @@ Occupancy
 3D+shape
 Robotic Manipulation
 Ego
+3D+Correspondence
+Affordance

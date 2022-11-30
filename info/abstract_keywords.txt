@@ -13,3 +13,4 @@ NeRF
 Affordance
 Active perception
 Egocentric
+MAE
